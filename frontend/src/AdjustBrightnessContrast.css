@@ -1,0 +1,9 @@
+/* AdjustBrightnessContrast.css */
+
+.adjust-brightness-contrast {
+  margin-top: 20px;
+}
+
+.adjust-brightness-contrast input {
+  width: 100%;
+}

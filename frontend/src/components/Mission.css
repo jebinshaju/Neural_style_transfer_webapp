@@ -1,0 +1,129 @@
+/* Mission.css */
+
+.mission {
+  text-align: center;
+  padding: 50px; /* Adjust padding as needed */
+  opacity: 1; /* Ensure initial opacity is set to 1 */
+  transition: opacity 2s ease; /* Add transition effect */
+  background: linear-gradient(45deg, #64B3F4, #C2E59C); /* Default background color */
+  transition: transform 0.3s ease-in-out;
+}
+
+.mission.visible {
+  opacity: 1; /* Show the content when it's visible */
+}
+
+.mission-content {
+  transform: translateY(50px); /* Start position for the slide-in animation */
+  transition: transform 1s ease; /* Add transition effect */
+}
+
+.mission-content.slide-in {
+  transform: translateY(0); /* Slide in the content */
+}
+
+.mission h3 {
+  font-size: 1.8em;
+  margin-bottom: 20px; /* Adjust spacing */
+  font-family: monospace;
+}
+
+.rectangle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%; /* Adjust width as needed */
+  height: 100vh;
+  padding: 20px; /* Adjust padding as needed */
+  margin: 0 auto; /* Center the rectangle */
+}
+
+.image-containers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns, adjust as needed */
+  gap: 10px; /* Adjust gap between images */
+  max-width: 100%; /* Ensure images do not exceed container width */
+  max-height: 100%; /* Ensure images do not exceed container height */
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-containers img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and cover container */
+  max-width: 100%; /* Ensure images do not exceed container width */
+  max-height: 100%; /* Ensure images do not exceed container height */
+  transition: transform 0.3s ease-in-out; /* Add transition effect */
+  border-radius: 20px;
+}
+
+
+
+
+.image-containers img.slide-in {
+  animation: slideIn 2s ease forwards;
+}
+
+
+.button-container {
+  margin-top: 10px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.try-out-button {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: cursive;
+}
+
+.try-out-button::after {
+  content: '➜';
+  top: 50%;
+  right: -25px;
+  transform: translateY(-50%);
+  opacity: 0;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#ck {
+  color: #fff;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideImageIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

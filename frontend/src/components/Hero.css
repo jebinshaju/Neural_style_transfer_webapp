@@ -1,0 +1,105 @@
+/* Hero.css */
+
+.hero {
+  height: 100vh;
+  position: relative;
+}
+
+.outer-box {
+  position: relative;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  margin: 20px;
+  background-color: #e5ddd5;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(45deg, violet, white);
+}
+
+.inner-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 180vh;
+  border-radius: 20px;
+  background-image: url('./img4.jpg');
+  background-size: cover;
+  color: #fff;
+}
+
+.text-container {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+  font-size: 1.2em;
+}
+
+.text-container.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quote {
+  font-size: 1.4em;
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+  padding: 50px;
+}
+
+.text-container.appear .quote {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation for the quote */
+.quote {
+  animation: animateQuote 8s linear infinite alternate;
+}
+
+/* Styles for scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 10%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #FFF;
+  font-size: 0.7em;
+}
+
+.scroll-indicator p {
+  margin-bottom: 10px;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid #fff;
+  animation: arrowBounce 2s infinite;
+  margin-left: 30px;
+}
+
+@keyframes arrowBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Added style for pointer cursor */
+.scroll-text {
+  cursor: pointer;
+}
