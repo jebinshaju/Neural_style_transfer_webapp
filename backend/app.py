@@ -319,7 +319,7 @@ def transfer_style():
 
 
 @app.route('/transfer_style_logged_out', methods=['GET', 'POST'])
-def transfer_style():
+def transfer_style_logged_out():
       
     if request.method == 'POST':
        
