@@ -34,7 +34,7 @@ const StyleTransferForming = () => {
     formData.append('style_contrast', styleContrast);
 
     try {
-      const response = await axios.post('http://localhost:5000/transfer_style', formData, {
+      const response = await axios.post('http://localhost:5000/transfer_style_logged_out', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -65,11 +65,8 @@ const StyleTransferForming = () => {
           setContrast={setContentContrast}
         />
         {showUploadAnimation && (
-          <img
-            src={uploadAnimation} // Replace with the path to your animated GIF
-            alt="Upload Animation"
-            className="upload-animation"
-          />
+          <div className="loaderx">
+          </div>
         )}
         <ImageUpload
           label="Style Image"

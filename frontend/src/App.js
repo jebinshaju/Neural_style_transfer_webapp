@@ -9,6 +9,8 @@ import HeroComponent from './components/HeroComponent';
 import ScrollingEffectComponent from './components/ScrollingEffectComponent';
 import QuoteComponent from './components/QuoteComponent';
 import MissionComponent from './components/MissionComponent';
+import Profile from './components/profile';
+import StyleTransferForming from './components/StyleTransW'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -46,6 +48,8 @@ function App() {
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/styletransfer" element={<StyleTransferForm />} />
         <Route path="/" element={<HeroComponent />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/styletransfering' element={<StyleTransferForming />} />
       </Routes>
       {location.pathname === '/' && <ScrollingEffectComponent currentPage={currentPage} />}
       {location.pathname === '/' && (

@@ -1,44 +1,86 @@
 .profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .user-details {
-    margin-bottom: 20px;
-  }
-  
-  .user-details h2 {
-    margin-bottom: 10px;
-  }
-  
-  .user-images {
-    width: 80%;
-  }
-  
-  .image-grids {
-    display: grid;
-    grid-row: auto / auto;
-    flex-direction: row;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    grid-template-columns: repeat(auto-fill, minmax(600px, 2fr));
-    grid-gap: 20px; /* Adjust gap between images */
-  }
-  
-  .image-item {
-    display: flex;
-    flex-direction: row;
-    
-   
+.user-details {
+  margin-bottom: 20px;
+}
 
-  }
+.user-details h2 {
+  margin-bottom: 10px;
+}
 
+.image-grids {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
 
-  
-  
-  .image-item img {
-    width: 100%; /* Ensure each image takes up the full width of the grid */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 20px;
+.image-item {
+  width: 95%; /* Set width to 100% for each item */
+  box-sizing: border-box;
+  margin-top: 20px;
+
+}
+
+.image-item .image-set {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-item img {
+  max-width: calc(33.33% - 100px); /* Adjust image width for three items per row */
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 20px;
+}
+.image-item.slide-in {
+  transform: translateY(0); /* Slide in the content */
+}
+
+.loadery {
+  display: flex;
+  align-items: center;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #333;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+  size:20px;
+}
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
   }
-  
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#userI{
+  font-family:cursive;
+	font-size:2.5em;
+	border-bottom: 2px solid yellow;
+	border-right: 2px solid yellow;
+	width: 300px;
+	text-align:center;
+	box-shadow: 4px 4px 5px #fff;
+  padding:20px;
+  margin-bottom: 10px;
+}

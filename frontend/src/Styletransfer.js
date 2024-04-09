@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate and Link
 import ImageUpload from './ImageUpload';
 import './Styletransfer.css';
-
-import uploadAnimation from './tenor2.gif';
-import loginIcon from './components/icon.png'; 
+import loginIcon from './components/icon.png';
 
 const StyleTransferForm = () => {
   const [contentImage, setContentImage] = useState(null);
@@ -22,13 +20,60 @@ const StyleTransferForm = () => {
   const [showUploadAnimation, setShowUploadAnimation] = useState(false);
 
   const navigate = useNavigate(); // Get the navigate function
+  useEffect(() => {
+   const checkSession = async () => {
+     try {
+       const response = await axios.get('http://localhost:5000/session_check');
+       if (!response.data.success) {
+         navigate('/login');
+       }
+     } catch (error) {
+       console.error('Error checking session:', error);
+     }
+   };
+
+   checkSession();
+ }, [navigate]);
 
   const handleTransferStyle = async () => {
-    // Your existing code for style transfer
-  };
+    setUploading(true);
+    setShowUploadAnimation(true); // Trigger animation
+    const formData = new FormData();
+    formData.append('content', contentImage);
+    formData.append('style', styleImage);
+    formData.append('epochs', epochs);
+    formData.append('steps_per_epoch', stepsPerEpoch);
+    formData.append('content_brightness', contentBrightness);
+    formData.append('content_contrast', contentContrast);
+    formData.append('style_brightness', styleBrightness);
+    formData.append('style_contrast', styleContrast);
 
+    try {
+      const response = await axios.post('http://localhost:5000/transfer_style', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        onUploadProgress: (progressEvent) => {
+          const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+          setUploadProgress(progress); // Update upload progress state
+        },
+      });
+      setGeneratedImage(response.data.generated_image);
+    } catch (error) {
+      console.error('Error transferring style:', error);
+    } finally {
+      setUploading(false);
+      setShowUploadAnimation(false); // Hide animation after upload
+    }
+  };
   const handleSignout = async () => {
-    // Your existing code for signout
+    try {
+      // Assuming you have a signout endpoint in your backend
+      await axios.get('http://localhost:5000/signout');
+      navigate('/login'); // Navigate to the login page after successful signout
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
   };
 
   return (
@@ -49,11 +94,8 @@ const StyleTransferForm = () => {
           setContrast={setContentContrast}
         />
         {showUploadAnimation && (
-          <img
-            src={uploadAnimation}
-            alt="Upload Animation"
-            className="upload-animation"
-          />
+        <div className="loaderx">
+        </div>
         )}
         <ImageUpload
           label="Style Image"

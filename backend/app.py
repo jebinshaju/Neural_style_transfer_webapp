@@ -25,9 +25,15 @@ app.secret_key = os.urandom(24).hex()  # Set a secret key for session management
 
 
 
-# Configure Firebase
 firebaseConfig = {
- }
+    'apiKey': "AIzaSyAhCKUMbP8GGtwkAaAEV38dKWzn6BcxS5Y",
+    'authDomain': "neural-st.firebaseapp.com",
+    'projectId': "neural-st",
+    'measurementId': "G-7YF88TGD3Y",
+    'storageBucket': "neural-st.appspot.com",
+    'messagingSenderId': "690387462569",
+    'appId': "1:690387462569:web:8b5709267710c33a227cb8",
+    'databaseURL': "https://neural-st-default-rtdb.firebaseio.com/" }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
@@ -211,6 +217,9 @@ def signout():
     return jsonify({'success': True, 'message': 'User signed out successfully'}), 200
 
 
+
+
+
 @app.route('/user_info',methods=['GET'])
 def user_info():
     session = load_session_from_file()
@@ -255,9 +264,16 @@ def signup():
     else:
         return jsonify({'success': False, 'error': 'No data provided'}), 400
 
+@app.route('/session_check', methods=['GET', 'POST'])
+def sessioning():
+    session = load_session_from_file()
+    if 'user' not in session:
+        return jsonify({'success': False, 'error': 'Invalid data'})
+    else:
+        return jsonify({'success': True}), 200
 
-    
-# Style Transfer endpoint
+
+
 @app.route('/transfer_style', methods=['GET', 'POST'])
 def transfer_style():
     session = load_session_from_file()
