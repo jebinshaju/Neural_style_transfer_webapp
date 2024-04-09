@@ -35,7 +35,7 @@ const MissionComponent = () => {
   }, []);
 
   const handleButtonClick = () => {
-    navigate('./styletransfer');
+    navigate('./styletransfering');
   };
 
   return (

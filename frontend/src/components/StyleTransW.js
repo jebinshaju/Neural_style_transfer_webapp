@@ -1,13 +1,12 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate and Link
-import ImageUpload from './ImageUpload';
-import './Styletransfer.css';
+import ImageUpload from '../ImageUpload';
+
 
 import uploadAnimation from './tenor2.gif';
-import loginIcon from './components/icon.png'; 
 
-const StyleTransferForm = () => {
+const StyleTransferForming = () => {
   const [contentImage, setContentImage] = useState(null);
   const [styleImage, setStyleImage] = useState(null);
   const [epochs, setEpochs] = useState(1);
@@ -18,26 +17,43 @@ const StyleTransferForm = () => {
   const [styleContrast, setStyleContrast] = useState(0);
   const [generatedImage, setGeneratedImage] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadProgress, setUploadProgress] = useState(0); // State to hold upload progress
   const [showUploadAnimation, setShowUploadAnimation] = useState(false);
 
-  const navigate = useNavigate(); // Get the navigate function
-
   const handleTransferStyle = async () => {
-    // Your existing code for style transfer
-  };
+    setUploading(true);
+    setShowUploadAnimation(true); // Trigger animation
+    const formData = new FormData();
+    formData.append('content', contentImage);
+    formData.append('style', styleImage);
+    formData.append('epochs', epochs);
+    formData.append('steps_per_epoch', stepsPerEpoch);
+    formData.append('content_brightness', contentBrightness);
+    formData.append('content_contrast', contentContrast);
+    formData.append('style_brightness', styleBrightness);
+    formData.append('style_contrast', styleContrast);
 
-  const handleSignout = async () => {
-    // Your existing code for signout
+    try {
+      const response = await axios.post('http://localhost:5000/transfer_style', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        onUploadProgress: (progressEvent) => {
+          const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+          setUploadProgress(progress); // Update upload progress state
+        },
+      });
+      setGeneratedImage(response.data.generated_image);
+    } catch (error) {
+      console.error('Error transferring style:', error);
+    } finally {
+      setUploading(false);
+      setShowUploadAnimation(false); // Hide animation after upload
+    }
   };
 
   return (
     <div className="style-transfer-form">
-      <div className="login-icon-container">
-        <Link to="/profile">
-          <img src={loginIcon} alt="Login" className="login-icon" />
-        </Link>
-      </div>
       <h2 style={{ padding: "40px" }} id="r1">NEURAL STYLE TRANSFER</h2>
       <div className="upload-section">
         <ImageUpload
@@ -50,7 +66,7 @@ const StyleTransferForm = () => {
         />
         {showUploadAnimation && (
           <img
-            src={uploadAnimation}
+            src={uploadAnimation} // Replace with the path to your animated GIF
             alt="Upload Animation"
             className="upload-animation"
           />
@@ -80,7 +96,7 @@ const StyleTransferForm = () => {
       <button className="transfer-btn" onClick={handleTransferStyle} disabled={!contentImage || !styleImage || uploading}>
         {uploading ? 'Uploading...' : 'Transfer Style'}
       </button>
-      {uploading && <progress value={uploadProgress} max="100"></progress>}
+      {uploading && <progress value={uploadProgress} max="100"></progress>} {/* Display progress bar */}
       {generatedImage && (
         <div className="generated-image">
           <h3 style={{ margin: "20px" }}>GENERATED IMAGE</h3>
@@ -88,11 +104,7 @@ const StyleTransferForm = () => {
           <a href={`http://localhost:5000/generated_image/${generatedImage}`} download>Download Image</a>
         </div>
       )}
-      <button className="signout-btn" onClick={handleSignout}>
-        Sign Out
-      </button>
     </div>
   );
 };
-
-export default StyleTransferForm;
+export default StyleTransferForming;
