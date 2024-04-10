@@ -20,10 +20,10 @@ RUN pip install -r requirements.txt
 COPY vgg19_weights_tf_dim_ordering_tf_kernels_notop.h5 /app/vgg19_weights_tf_dim_ordering_tf_kernels_notop.h5
 
 # Copy additional directories
-COPY nst_backend /app/nst_backend
+#COPY nst_backend /app/nst_backend
 COPY style /app/style
 COPY styleimages_references /app/styleimages_references
-COPY templates /app/templates
+COPY session.json /app/session.json
 COPY generated /app/generated
 COPY content /app/content
 
