@@ -26,7 +26,15 @@ app.secret_key = os.urandom(24).hex()  # Set a secret key for session management
 
 
 firebaseConfig = {
-    }
+    'apiKey': "AIzaSyAhCKUMbP8GGtwkAaAEV38dKWzn6BcxS5Y",
+    'authDomain': "neural-st.firebaseapp.com",
+    'projectId': "neural-st",
+    'measurementId': "G-7YF88TGD3Y",
+    'storageBucket': "neural-st.appspot.com",
+    'messagingSenderId': "690387462569",
+    'appId': "1:690387462569:web:8b5709267710c33a227cb8",
+    'databaseURL': "https://neural-st-default-rtdb.firebaseio.com/" }
+
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
@@ -213,18 +221,69 @@ def signout():
 
 
 
-@app.route('/user_info',methods=['GET'])
+@app.route('/user_info', methods=['GET'])
 def user_info():
     session = load_session_from_file()
     if 'user' not in session:
         return jsonify({'error': 'User not logged in'}), 401  # Unauthorized
 
-    token = session.get('user')
+    user_id = session['user']['localId']
+
     try:
-        user_info = auth.get_account_info(token)
-        return jsonify({'user': user_info}), 200
+        user_data = db.child('users').child(user_id).get().val()
+        if user_data:
+            name = user_data.get('name')
+            email = user_data.get('email')
+            if name and email:
+                return jsonify({'name': name, 'email': email}), 200
+            else:
+                return jsonify({'error': 'Name or email not found for the user'}), 500
+        else:
+            return jsonify({'error': 'User data not found'}), 500
     except Exception as e:
-        return jsonify({'error': str(e)}), 500  # Internal Server Error
+        return jsonify({'error': str(e)}), 500
+
+
+
+@app.route('/change_name', methods=['POST'])
+def change_name():
+    session = load_session_from_file()
+    if 'user' not in session:
+        return jsonify({'error': 'User not logged in'}), 401  # Unauthorized
+
+    user_id = session['user']['localId']
+    data = request.json
+    if data:
+        new_name = data.get('new_name')
+        if new_name:
+            try:
+                db.child("users").child(user_id).update({"name": new_name})
+                return jsonify({'success': True, 'message': 'Name updated successfully'}), 200
+            except Exception as e:
+                return jsonify({'success': False, 'error': str(e)}), 500
+        else:
+            return jsonify({'success': False, 'error': 'New name not provided'}), 400
+    else:
+        return jsonify({'success': False, 'error': 'No data provided'}), 400
+
+
+@app.route('/delete_user', methods=['DELETE'])
+def delete_user():
+    session = load_session_from_file()
+    if 'user' not in session:
+        return jsonify({'error': 'User not logged in'}), 401  # Unauthorized
+
+    user_id = session['user']['localId']
+
+    try:
+        auth.delete_user_account(user_id)
+        db.child("users").child(user_id).remove()
+        session.pop('user')  # Remove user session data after deletion
+        return jsonify({'success': True, 'message': 'User deleted successfully'}), 200
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
 
 @app.route('/signup', methods=['POST'])
 def signup():
