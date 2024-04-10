@@ -167,6 +167,38 @@ def style_transfer(content_image_path, style_image_path, output_path, epochs, st
     generated_image_pil.save(output_path)
 
 
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+    if data:
+        name = data.get('name')
+        email = data.get('email')
+        password = data.get('password')
+        if name and email and password:
+            try:
+                user = auth.create_user_with_email_and_password(email, password,)
+                # Save user data to Firebase Realtime Database
+                user_data = {
+                    'name': name,
+                    'email': email
+                    # You can add more user data fields here if needed
+                }
+                db.child('users').child(user['localId']).set(user_data)
+                auth.send_email_verification(user['idToken'])
+                session['user'] = user
+                print(user)
+                print("&&&&&")
+                print(session["user"]["localId"])
+                save_session_to_file(session)
+                return jsonify({'success': True, 'message': 'User created successfully'}), 200
+            except:
+                return jsonify({'success': False, 'error': 'Email already exists'}), 400
+        else:
+            return jsonify({'success': False, 'error': 'Invalid data'}), 400
+    else:
+        return jsonify({'success': False, 'error': 'No data provided'}), 400
+
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -278,36 +310,6 @@ def delete_user():
 
 
 
-@app.route('/signup', methods=['POST'])
-def signup():
-    data = request.json
-    if data:
-        name = data.get('name')
-        email = data.get('email')
-        password = data.get('password')
-        if name and email and password:
-            try:
-                user = auth.create_user_with_email_and_password(email, password,)
-                # Save user data to Firebase Realtime Database
-                user_data = {
-                    'name': name,
-                    'email': email
-                    # You can add more user data fields here if needed
-                }
-                db.child('users').child(user['localId']).set(user_data)
-                auth.send_email_verification(user['idToken'])
-                session['user'] = user
-                print(user)
-                print("&&&&&")
-                print(session["user"]["localId"])
-                save_session_to_file(session)
-                return jsonify({'success': True, 'message': 'User created successfully'}), 200
-            except:
-                return jsonify({'success': False, 'error': 'Email already exists'}), 400
-        else:
-            return jsonify({'success': False, 'error': 'Invalid data'}), 400
-    else:
-        return jsonify({'success': False, 'error': 'No data provided'}), 400
 
 @app.route('/session_check', methods=['GET', 'POST'])
 def sessioning():
