@@ -1,7 +1,9 @@
 .profile-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  
+  width:100vh;
+  
 }
 
 .user-details {
@@ -70,4 +72,50 @@
 	box-shadow: 4px 4px 5px #fff;
   padding:20px;
   margin-bottom: 10px;
+}
+.containerP{
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  
+  
+}
+.user-details {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 70%; /* Set width for user details */
+}
+
+.user-details h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.user-details div {
+  margin-bottom: 15px;
+}
+
+.user-details label {
+  font-weight: bold;
+}
+
+.user-details input[type="text"] {
+  width: 70%;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.user-details button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

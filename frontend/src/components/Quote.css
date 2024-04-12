@@ -20,10 +20,10 @@
 }
 
 .description {
-  font-size: 1.4em;
+  font-size: 1.8em;
   line-height: 1.5;
   margin-bottom: 20px;
-  font-family: cursive;
+  font-family:monospace;
   color: #fff;
 }
 
