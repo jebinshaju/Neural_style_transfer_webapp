@@ -25,14 +25,7 @@ app.secret_key = os.urandom(24).hex()  # Set a secret key for session management
 
 
 firebaseConfig = {
-    'apiKey': "AIzaSyAhCKUMbP8GGtwkAaAEV38dKWzn6BcxS5Y",
-    'authDomain': "neural-st.firebaseapp.com",
-    'projectId': "neural-st",
-    'measurementId': "G-7YF88TGD3Y",
-    'storageBucket': "neural-st.appspot.com",
-    'messagingSenderId': "690387462569",
-    'appId': "1:690387462569:web:8b5709267710c33a227cb8",
-    'databaseURL': "https://neural-st-default-rtdb.firebaseio.com/" }
+    }
 
 
 firebase = pyrebase.initialize_app(firebaseConfig)
