@@ -432,7 +432,15 @@ def get_user_images():
     
    
     return jsonify(images_data)
-
+@app.route('/reference_images', methods=['GET'])
+def get_images():
+    # Retrieve all images URLs from the database
+    images_data = db.child("reference_images").get().val()
+    if images_data:
+        images_urls = {"image_{}".format(idx + 1): image_data["url"] for idx, image_data in enumerate(images_data.values())}
+        return jsonify(images_urls)
+    else:
+        return jsonify({"message": "No images found"}), 404
 
 @app.route('/generated_image/<path:image_name>')
 def get_generated_image(image_name):
