@@ -118,7 +118,7 @@ The project structure is organized as follows:
 
 - **frontend/**: Contains the React frontend application.
 - **backend/**: Contains the Flask backend application.
-- **models/**: Stores the pre-trained VGG19 model for style transfer.
+
 
 ## Contributing
 
@@ -135,9 +135,21 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-Feel free to customize the README further to include any additional details or instructions specific to your project. If you have any questions or need further assistance, don't hesitate to ask!
+### VGG19 Algorithm and Implementation using TensorFlow
 
+#### Overview
+VGG19 is a convolutional neural network architecture proposed by the Visual Geometry Group at the University of Oxford. It is widely used for image classification and feature extraction tasks. VGG19 consists of 19 layers, including 16 convolutional layers and 3 fully connected layers.
 
+#### Implementation using TensorFlow
+In the provided Flask application, VGG19 is implemented using TensorFlow for style transfer. Here's a brief overview of its implementation:
+
+1. **Model Loading:** The VGG19 model is loaded using TensorFlow's `tf.keras.applications.VGG19` module.
+2. **Preprocessing:** Images are preprocessed using VGG19's `preprocess_input` function to ensure compatibility with the model.
+3. **Style Transfer:** The style transfer process involves extracting features from both the style and content images using specific layers of the VGG19 model.
+4. **Loss Calculation:** Style loss and content loss are calculated based on the features extracted from the style and content images.
+5. **Optimization:** An Adam optimizer is used to minimize the combined loss function, resulting in the generation of a new image that combines the content of the content image with the style of the style image.
+
+This implementation allows users to perform neural style transfer by providing style and content images, along with optional parameters for training epochs and steps per epoch. The generated image is then returned as output, which users can retrieve using the appropriate endpoints.
 
 ---
 
@@ -319,18 +331,4 @@ This Flask API allows users to perform neural style transfer on images. Users ca
 ---
 
 
-### VGG19 Algorithm and Implementation using TensorFlow
 
-#### Overview
-VGG19 is a convolutional neural network architecture proposed by the Visual Geometry Group at the University of Oxford. It is widely used for image classification and feature extraction tasks. VGG19 consists of 19 layers, including 16 convolutional layers and 3 fully connected layers.
-
-#### Implementation using TensorFlow
-In the provided Flask application, VGG19 is implemented using TensorFlow for style transfer. Here's a brief overview of its implementation:
-
-1. **Model Loading:** The VGG19 model is loaded using TensorFlow's `tf.keras.applications.VGG19` module.
-2. **Preprocessing:** Images are preprocessed using VGG19's `preprocess_input` function to ensure compatibility with the model.
-3. **Style Transfer:** The style transfer process involves extracting features from both the style and content images using specific layers of the VGG19 model.
-4. **Loss Calculation:** Style loss and content loss are calculated based on the features extracted from the style and content images.
-5. **Optimization:** An Adam optimizer is used to minimize the combined loss function, resulting in the generation of a new image that combines the content of the content image with the style of the style image.
-
-This implementation allows users to perform neural style transfer by providing style and content images, along with optional parameters for training epochs and steps per epoch. The generated image is then returned as output, which users can retrieve using the appropriate endpoints.
