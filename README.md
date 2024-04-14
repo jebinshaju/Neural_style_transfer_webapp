@@ -50,7 +50,7 @@ To run this application locally, follow these steps:
 2. Navigate to the project directory:
 
    ```bash
-   cd neural-style-transfer-app
+   cd Neural_style_transfer_webapp
    ```
 
 3. Install the frontend dependencies:
