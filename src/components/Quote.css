@@ -1,0 +1,102 @@
+.quotes {
+  text-align: center;
+  padding: 50px;
+  background: linear-gradient(45deg, #FFF3B0  ,#CA26FF );
+}
+
+.content {
+  opacity: 0;
+}
+
+.content.animate {
+  animation: fadeIn 1s ease forwards;
+}
+
+.heading {
+  font-size: 2em;
+  margin-bottom: 20px;
+  font-family: system-ui;
+  color: #fff;
+}
+
+.description {
+  font-size: 1.8em;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-family:monospace;
+  color: #fff;
+}
+
+.image-container {
+  opacity: 0;
+}
+
+.image-container.animate {
+  animation: slideIn 1s ease forwards;
+}
+
+.rows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  margin: 0 20px;
+  border-radius: 20px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image:hover {
+  transform: scale(1.1);
+}
+
+.operation {
+  display: flex;
+  align-items: center;
+}
+
+
+.equal {
+  opacity: 0;
+  animation: slideIn 2s ease forwards 1.5s;
+}
+
+.equal.animate {
+  animation: slideIn 1s ease forwards;
+}
+
+.symbol {
+  font-size: 2em;
+  margin: 10px;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

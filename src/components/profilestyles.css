@@ -1,0 +1,121 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  
+  width:100vh;
+  
+}
+
+.user-details {
+  margin-bottom: 20px;
+}
+
+.user-details h2 {
+  margin-bottom: 10px;
+}
+
+.image-grids {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.image-item {
+  width: 95%; /* Set width to 100% for each item */
+  box-sizing: border-box;
+  margin-top: 20px;
+
+}
+
+.image-item .image-set {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-item img {
+  max-width: calc(33.33% - 100px); /* Adjust image width for three items per row */
+  height: auto;
+
+  border-radius: 20px;
+
+}
+.image-item img:hover {
+
+  transform: scale(1.1); /* Increase the size by 10% */
+  transition: transform 0.5s ease; /* Smooth transition */
+
+}
+
+
+.loadery {
+  display: flex;
+  align-items: center;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #333;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+  size:20px;
+}
+
+
+#userI{
+  font-family:cursive;
+	font-size:2.5em;
+	border-bottom: 2px solid yellow;
+	border-right: 2px solid yellow;
+	width: 300px;
+	text-align:center;
+	box-shadow: 4px 4px 5px #fff;
+  padding:20px;
+  margin-bottom: 10px;
+}
+.containerP{
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  
+  
+}
+.user-details {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 70%; /* Set width for user details */
+}
+
+.user-details h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.user-details div {
+  margin-bottom: 15px;
+}
+
+.user-details label {
+  font-weight: bold;
+}
+
+.user-details input[type="text"] {
+  width: 70%;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.user-details button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

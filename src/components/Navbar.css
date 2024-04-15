@@ -1,0 +1,62 @@
+.navbar-container {
+  position: relative;
+  
+
+
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+
+.stripe {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin-bottom: 5px;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 50px 0 0 0;
+
+}
+
+.navbar ul li {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.navbar ul li a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.navbar ul li a:hover {
+  background-color: #f0f0f0;
+}
+
+.menu-text {
+  font-size: 1.3em;
+  padding: 10px;
+  font-family: system-ui;
+
+}
