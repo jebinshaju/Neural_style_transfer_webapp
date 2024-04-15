@@ -23,7 +23,7 @@ const StyleTransferForm = () => {
   useEffect(() => {
    const checkSession = async () => {
      try {
-       const response = await axios.get('http://localhost:5000/session_check');
+       const response = await axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/session_check');
        if (!response.data.success) {
          navigate('/login');
        }
@@ -49,7 +49,7 @@ const StyleTransferForm = () => {
     formData.append('style_contrast', styleContrast);
 
     try {
-      const response = await axios.post('http://localhost:5000/transfer_style', formData, {
+      const response = await axios.post('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/transfer_style', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -69,7 +69,7 @@ const StyleTransferForm = () => {
   const handleSignout = async () => {
     try {
       // Assuming you have a signout endpoint in your backend
-      await axios.get('http://localhost:5000/signout');
+      await axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/signout');
       navigate('/login'); // Navigate to the login page after successful signout
     } catch (error) {
       console.error('Error signing out:', error);
@@ -126,8 +126,8 @@ const StyleTransferForm = () => {
       {generatedImage && (
         <div className="generated-image">
           <h3 style={{ margin: "20px" }}>GENERATED IMAGE</h3>
-          <img src={`http://localhost:5000/generated_image/${generatedImage}`} alt="Generated" className="genz" />
-          <a href={`http://localhost:5000/generated_image/${generatedImage}`} download>Download Image</a>
+          <img src={`https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/generated_image/${generatedImage}`} alt="Generated" className="genz" />
+          <a href={`https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/generated_image/${generatedImage}`} download>Download Image</a>
         </div>
       )}
       <button className="signout-btn" onClick={handleSignout}>
