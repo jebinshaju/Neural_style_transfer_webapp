@@ -4,7 +4,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import LoginComponent from './Login';
 import SignUpForm from './SignUP';
 import StyleTransferForm from './Styletransfer';
-import NavbarComponent from './components/NavbarComponents';
 import HeroComponent from './components/HeroComponent';
 import ScrollingEffectComponent from './components/ScrollingEffectComponent';
 import QuoteComponent from './components/QuoteComponent';
