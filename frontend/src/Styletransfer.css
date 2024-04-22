@@ -6,9 +6,7 @@ body, html {
 }
 
 /* Add a magenta gradient background */
-body {
-  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(62,133,238,1) 1.1%, rgba(227,137,240,1) 43.7%, rgba(243,193,124,1) 89.7% );
-}
+
 
 .style-transfer-form {
   height: 100%;

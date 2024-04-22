@@ -10,10 +10,11 @@
   width: calc(100% - 40px);
   height: calc(100% - 40px);
   margin: 20px;
-  background-color: #e5ddd5;
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(151,153,162,1) 40%, rgba(43,141,138,1) 65%, rgba(55,124,116,1) 100%);
   border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(45deg, violet, white);
+
 }
 
 .inner-box {
@@ -25,7 +26,7 @@
   background-color: rgba(255, 255, 255, 0.5);
   width: 180vh;
   border-radius: 20px;
-  background-image: url('./img4.jpg');
+  background-image: url('./lander4.jpg');
   background-size: cover;
   color: #fff;
 }
@@ -50,6 +51,7 @@
   transform: translateY(50px);
   transition: opacity 1s ease, transform 1s ease;
   padding: 50px;
+  color:lightgoldenrodyellow
 }
 
 .text-container.appear .quote {

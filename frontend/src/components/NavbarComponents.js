@@ -29,7 +29,7 @@ const NavbarComponent = () => {
     <div className="navbar-container">
       <button className="toggle-btn" onClick={toggleNavbar}>
         {isVisible ? <FaTimes /> : <FaBars />}
-        <span className="menu-text">M E N U</span>
+ 
       </button>
       <nav ref={navbarRef} style={navbarStyle} className={`navbar ${isVisible ? 'visible' : ''}`}>
         <FaTimes className="close-icon" onClick={toggleNavbar} />
