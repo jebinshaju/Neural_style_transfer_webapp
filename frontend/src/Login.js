@@ -19,7 +19,7 @@ const LoginComponent = () => {
     setIsLoading(true); // Start loading animation
 
     try {
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const LoginComponent = () => {
     setIsLoading(true); // Start loading animation
 
     try {
-      const response = await fetch('http://localhost:5000/reset_password', {
+      const response = await fetch('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/reset_password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

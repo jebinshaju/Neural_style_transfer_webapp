@@ -34,7 +34,7 @@ const StyleTransferForming = () => {
     formData.append('style_contrast', styleContrast);
 
     try {
-      const response = await axios.post('http://localhost:5000/transfer_style_logged_out', formData, {
+      const response = await axios.post('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/transfer_style_logged_out', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -97,8 +97,8 @@ const StyleTransferForming = () => {
       {generatedImage && (
         <div className="generated-image">
           <h3 style={{ margin: "20px" }}>GENERATED IMAGE</h3>
-          <img src={`http://localhost:5000/generated_image/${generatedImage}`} alt="Generated" className="genz" />
-          <a href={`http://localhost:5000/generated_image/${generatedImage}`} download>Download Image</a>
+          <img src={`https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/generated_image/${generatedImage}`} alt="Generated" className="genz" />
+          <a href={`https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/generated_image/${generatedImage}`} download>Download Image</a>
         </div>
       )}
     </div>

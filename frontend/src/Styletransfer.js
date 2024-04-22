@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate and Link
+import { useNavigate, Link } from 'react-router-dom';
 import ImageUpload from './ImageUpload';
-import './Styletransfer.css';
 import loginIcon from './components/icon.png';
+import './Styletransfer.css';
 
 const StyleTransferForm = () => {
   const [contentImage, setContentImage] = useState(null);
@@ -18,26 +18,25 @@ const StyleTransferForm = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showUploadAnimation, setShowUploadAnimation] = useState(false);
+  const [userDetails, setUserDetails] = useState({ name: '', email: '' });
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // Get the navigate function
   useEffect(() => {
-   const checkSession = async () => {
-     try {
-       const response = await axios.get('http://localhost:5000/session_check');
-       if (!response.data.success) {
-         navigate('/login');
-       }
-     } catch (error) {
-       console.error('Error checking session:', error);
-     }
-   };
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/user_info');
+        setUserDetails(response.data);
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
 
-   checkSession();
- }, [navigate]);
+    fetchUserDetails();
+  }, []);
 
   const handleTransferStyle = async () => {
     setUploading(true);
-    setShowUploadAnimation(true); // Trigger animation
+    setShowUploadAnimation(true);
     const formData = new FormData();
     formData.append('content', contentImage);
     formData.append('style', styleImage);
@@ -49,13 +48,13 @@ const StyleTransferForm = () => {
     formData.append('style_contrast', styleContrast);
 
     try {
-      const response = await axios.post('http://localhost:5000/transfer_style', formData, {
+      const response = await axios.post('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/transfer_style', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
         onUploadProgress: (progressEvent) => {
           const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-          setUploadProgress(progress); // Update upload progress state
+          setUploadProgress(progress);
         },
       });
       setGeneratedImage(response.data.generated_image);
@@ -63,14 +62,14 @@ const StyleTransferForm = () => {
       console.error('Error transferring style:', error);
     } finally {
       setUploading(false);
-      setShowUploadAnimation(false); // Hide animation after upload
+      setShowUploadAnimation(false);
     }
   };
+
   const handleSignout = async () => {
     try {
-      // Assuming you have a signout endpoint in your backend
-      await axios.get('http://localhost:5000/signout');
-      navigate('/login'); // Navigate to the login page after successful signout
+      await axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/signout');
+      navigate('/login');
     } catch (error) {
       console.error('Error signing out:', error);
     }
@@ -84,6 +83,17 @@ const StyleTransferForm = () => {
         </Link>
       </div>
       <h2 style={{ padding: "40px" }} id="r1">NEURAL STYLE TRANSFER</h2>
+      <div className="user-details">
+        <h2 id="userI">User Details</h2>
+        <div>
+          <label>Name:</label>
+          <span>{userDetails.name}</span>
+        </div>
+        <div>
+          <label>Email:</label>
+          <span>{userDetails.email}</span>
+        </div>
+      </div>
       <div className="upload-section">
         <ImageUpload
           label="Content Image"
@@ -94,8 +104,7 @@ const StyleTransferForm = () => {
           setContrast={setContentContrast}
         />
         {showUploadAnimation && (
-        <div className="loaderx">
-        </div>
+          <div className="loaderx"></div>
         )}
         <ImageUpload
           label="Style Image"
@@ -126,13 +135,11 @@ const StyleTransferForm = () => {
       {generatedImage && (
         <div className="generated-image">
           <h3 style={{ margin: "20px" }}>GENERATED IMAGE</h3>
-          <img src={`http://localhost:5000/generated_image/${generatedImage}`} alt="Generated" className="genz" />
-          <a href={`http://localhost:5000/generated_image/${generatedImage}`} download>Download Image</a>
+          <img src={`https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/generated_image/${generatedImage}`} alt="Generated" className="genz" />
+          <a href={`https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/generated_image/${generatedImage}`} download>Download Image</a>
         </div>
       )}
-      <button className="signout-btn" onClick={handleSignout}>
-        Sign Out
-      </button>
+      <button className="signout-btn" onClick={handleSignout}>Sign Out</button>
     </div>
   );
 };

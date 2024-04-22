@@ -38,8 +38,6 @@ body, html {
   cursor: pointer;
 }
 
-
-
 .generated-image {
   margin-top: 20px;
 }
@@ -94,12 +92,12 @@ body, html {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 1em;
   border-radius: 20px;
-
 }
 
 .signout-btn:hover {
   background-color: #FFD1AA;
 }
+
 .loaderx {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-top: 4px solid #333;
@@ -108,23 +106,31 @@ body, html {
   height: 40px;
   animation: spin 1s linear infinite;
   margin: auto;
-
 }
 
-.login-icon-container{
+.login-icon-container {
   display: flex;
-  align-items: center; /* Align items vertically */
-  justify-content: flex-start; /* Align items to the start of the flex container */
+  align-items: center;
 }
-.login-icon{
+
+.login-icon {
   position: fixed;
-
   cursor: pointer;
-
-  left:20px;
+  left: 20px;
   padding: 10px 20px;
-
   font-size: 1em;
   border-radius: 20px;
-  height:10vh
+  height: 10vh;
+}
+
+/* Pop-up user details styles */
+.user-details-popup {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

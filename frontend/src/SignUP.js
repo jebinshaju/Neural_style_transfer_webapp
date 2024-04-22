@@ -53,7 +53,7 @@ const SignUpForm = () => {
 
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:5000/signup', {
+            const response = await fetch('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

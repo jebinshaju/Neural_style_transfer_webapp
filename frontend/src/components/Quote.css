@@ -21,10 +21,10 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(239,223,129,1) 
 }
 
 .description {
-  font-size: 1.4em;
+  font-size: 1.8em;
   line-height: 1.5;
   margin-bottom: 20px;
-  font-family: cursive;
+  font-family:monospace;
   color: #fff;
 }
 

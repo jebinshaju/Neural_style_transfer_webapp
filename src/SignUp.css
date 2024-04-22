@@ -1,0 +1,145 @@
+/* Main container styling */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(62,133,238,1) 1.1%, rgba(227,137,240,1) 43.7%, rgba(243,193,124,1) 89.7% );
+}
+
+
+
+/* Signup section styling */
+.signup {
+    width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0); /* Semi-transparent background color */
+
+    text-align: center; /* Center text content within the signup box */
+    width: 65vh;
+    border-radius: 20px;
+}
+
+/* Container for signup content */
+.container1 {
+    width: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for signup form content */
+.signup-content {
+    width: 55vh;
+}
+
+/* Title styling */
+.form-title {
+    margin-bottom: 20px;
+    color: #fff
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Form input styling */
+.form-input {
+    width: calc(100% - 20px); /* Adjusted width */
+    padding: 15px;
+    margin-bottom: 10px; /* Added margin bottom */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0); /* Semi-transparent background color */
+    border-style: outset;
+}
+
+/* Placeholder styling */
+.form-input::placeholder {
+    color: #fff;
+    font-size: 14px;
+
+}
+
+/* Agree term styling */
+.agree-term {
+    margin-right: 10px;
+}
+
+/* Label agree term styling */
+.label-agree-term {
+    font-size: 14px;
+}
+
+/* Signup button styling */
+.form-submit {
+    position: relative;
+    width: 50%;
+    padding: 10px 1px;
+    border: none;
+    border-radius: 5px;
+    background-color: #60A6B6;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-right: 20px;
+    overflow: hidden; /* Hide overflow */
+}
+
+/* Rotation circle animation */
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Spinner styling */
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.7); /* Semi-transparent border */
+    border-top-color: #fff; /* Solid border color */
+    animation: rotate 2s linear infinite; /* Rotation animation */
+
+}
+
+/* Display the spinner during loading */
+.loading .spinner {
+    display: block;
+}
+
+/* Hover styling for signup button */
+.form-submit:hover {
+    background-color: #45a049;
+}
+
+/* Login link styling */
+.loginhere {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Login link text styling */
+.loginhere-link {
+    color: #4CAF50;
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    margin-top: 5px; /* Adjust the spacing */
+}
+
+/* Success message styling */
+.success {
+    color: green;
+}
