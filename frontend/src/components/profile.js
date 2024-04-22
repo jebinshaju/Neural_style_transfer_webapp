@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 import './profilestyles.css';
 
 const Profile = () => {
   const [userDetails, setUserDetails] = useState({ name: '', email: '' });
-  const [userImages, setUserImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingName, setEditingName] = useState(false);
   const [newName, setNewName] = useState('');
 
   useEffect(() => {
-    // Fetch user details and images
+    // Fetch user details
     axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/user_info')
       .then(response => {
         setUserDetails(response.data);
@@ -19,14 +19,6 @@ const Profile = () => {
       .catch(error => {
         console.error('Error fetching user details:', error);
         setLoading(false); // Turn off loading indicator in case of error
-      });
-
-    axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/get_user_images')
-      .then(response => {
-        setUserImages(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching user images:', error);
       });
   }, []);
 
@@ -78,26 +70,11 @@ const Profile = () => {
           <div>
             <label>Email:</label>
             <span>{userDetails.email}</span>
+            <br />
+            <br />
+            {/* View Gallery Link */}
+            <Link to="/gallery">View Gallery</Link>
           </div>
-        </div>
-        <h2 id="userI">User Images</h2>
-        {loading && <div className="loadery"></div>}
-        <div className="image-grids">
-          {userImages && Object.keys(userImages).map(imageKey => (
-            <div key={imageKey} className="image-item">
-              <div className='image-set'>
-                <img src={userImages[imageKey].content} alt={`Content ${imageKey}`} />
-                <div className="operation">
-                  <div className="symbol">+</div>
-                </div>
-                <img src={userImages[imageKey].style} alt={`Style ${imageKey}`} />
-                <div className="operation">
-                  <div className="symbol">=</div>
-                </div>
-                <img src={userImages[imageKey].generated} alt={`Generated ${imageKey}`} />
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </div>

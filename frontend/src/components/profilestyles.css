@@ -1,25 +1,26 @@
 .containerP {
   display: flex;
-  justify-content: space-between; /* Align items to left and right */
-  background-color: rgba(255, 255, 255, 0.5); /* Set transparency */
+  justify-content: center; /* Center the profile container horizontally */
+  align-items: center; /* Center the profile container vertically */
+  height: 100vh; /* Ensure the profile container takes the full height of the viewport */
 }
 
-.user-details {
+.profile-container {
   padding: 20px;
-  background-color: rgba(249, 249, 249, 0.7); /* Set transparency */
+  background-color: rgba(249, 249, 249, 0.7);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: calc(30% - 20px); /* Set width for user details */
-  margin-right: 20px; /* Add margin for spacing */
-  width: auto;
-  height:auto;
+  width: 30%; /* Set width for user details */
+  margin-bottom: 200px
+
 }
+
 
 .user-details h2 {
   font-family: 'Arial', sans-serif;
   font-size: 1.5em;
   margin-bottom: 10px;
-  
+
 }
 
 .user-details div {
@@ -93,10 +94,6 @@
 #userI {
   font-family: cursive;
   font-size: 2.5em;
-  
-  width: 300px;
-  text-align: center;
   box-shadow: 4px 4px 5px #fff;
-  padding: 20px;
-  margin-bottom: 10px;
+
 }

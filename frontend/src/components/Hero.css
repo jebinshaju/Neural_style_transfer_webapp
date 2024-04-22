@@ -5,17 +5,7 @@
   position: relative;
 }
 
-.outer-box {
-  position: relative;
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
-  margin: 20px;
-  background: rgb(238,174,202);
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(151,153,162,1) 40%, rgba(43,141,138,1) 65%, rgba(55,124,116,1) 100%);
-  border-radius: 20px;
-  overflow: hidden;
 
-}
 
 .inner-box {
   position: absolute;
@@ -24,7 +14,8 @@
   transform: translate(-50%, -50%);
   padding: 30vh;
   background-color: rgba(255, 255, 255, 0.5);
-  width: 180vh;
+  width: 190vh;
+  height:90vh;
   border-radius: 20px;
   background-image: url('./lander4.jpg');
   background-size: cover;
@@ -32,6 +23,7 @@
 }
 
 .text-container {
+  margin-top: 30px;;
   text-align: center;
   opacity: 0;
   transform: translateY(50px);

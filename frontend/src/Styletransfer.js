@@ -78,22 +78,14 @@ const StyleTransferForm = () => {
   return (
     <div className="style-transfer-form">
       <div className="login-icon-container">
+        <span id="welcome-msg">Welcome, {userDetails.name}!</span>
         <Link to="/profile">
           <img src={loginIcon} alt="Login" className="login-icon" />
         </Link>
+
       </div>
-      <h2 style={{ padding: "40px" }} id="r1">NEURAL STYLE TRANSFER</h2>
-      <div className="user-details">
-        <h2 id="userI">User Details</h2>
-        <div>
-          <label>Name:</label>
-          <span>{userDetails.name}</span>
-        </div>
-        <div>
-          <label>Email:</label>
-          <span>{userDetails.email}</span>
-        </div>
-      </div>
+
+      
       <div className="upload-section">
         <ImageUpload
           label="Content Image"

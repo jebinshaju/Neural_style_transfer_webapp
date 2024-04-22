@@ -7,8 +7,8 @@ body, html {
 
 /* Add a magenta gradient background */
 
-
 .style-transfer-form {
+  margin-top:100px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -109,28 +109,35 @@ body, html {
 }
 
 .login-icon-container {
+  position: fixed;
+  right: 20px; /* Adjust as needed */
+  top: 20px; /* Adjust as needed */
   display: flex;
   align-items: center;
 }
 
+
 .login-icon {
-  position: fixed;
   cursor: pointer;
-  left: 20px;
   padding: 10px 20px;
   font-size: 1em;
   border-radius: 20px;
   height: 10vh;
 }
 
-/* Pop-up user details styles */
+/* Popup user details styles */
 .user-details-popup {
   position: absolute;
-  top: 50px;
-  left: 20px;
+  top: calc(100% + 10px);
+  left: 0;
   background-color: white;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+#welcome-msg {
+  margin-left: 10px;
 }
