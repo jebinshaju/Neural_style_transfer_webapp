@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import './profilestyles.css';
 
 const Profile = () => {
@@ -8,6 +8,8 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [editingName, setEditingName] = useState(false);
   const [newName, setNewName] = useState('');
+  const [accountDeleted, setAccountDeleted] = useState(false);
+  const navigate = useNavigate(); // Use useNavigate for navigation
 
   useEffect(() => {
     // Fetch user details
@@ -44,37 +46,65 @@ const Profile = () => {
       });
   };
 
+  const handleDeleteAccount = () => {
+    axios.delete('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/delete_user')
+      .then(response => {
+        if (response.data.success) {
+          setAccountDeleted(true);
+          setTimeout(() => {
+            navigate('/login');
+          }, 2000);
+        } else {
+          console.error('Error deleting account:', response.data.error);
+
+        }
+      })
+      .catch(error => {
+        console.error('Error deleting account:', error);
+      });
+  };
+
   return (
     <div className='containerP'>
       <div className="profile-container">
         <div className="user-details">
           <h2 id="userI">User Details</h2>
-          <div>
-            <label>Name:</label>
-            {editingName ? (
-              <>
-                <input
-                  type="text"
-                  value={newName}
-                  onChange={(e) => setNewName(e.target.value)}
-                />
-                <button onClick={handleSaveName}>Save</button>
-              </>
-            ) : (
-              <>
-                <span>{userDetails.name}</span>
-                <button onClick={handleEditName}>Edit</button>
-              </>
-            )}
-          </div>
-          <div>
-            <label>Email:</label>
-            <span>{userDetails.email}</span>
-            <br />
-            <br />
-            {/* View Gallery Link */}
-            <Link to="/gallery">View Gallery</Link>
-          </div>
+          {accountDeleted ? (
+            <p style={{ color: 'green' }}>Account deleted</p>
+          ) : (
+            <>
+              <div>
+                <label>Name:</label>
+                {editingName ? (
+                  <>
+                    <input
+                      type="text"
+                      value={newName}
+                      onChange={(e) => setNewName(e.target.value)}
+                    />
+                    <button onClick={handleSaveName}>Save</button>
+                  </>
+                ) : (
+                  <>
+                    <span>{userDetails.name}</span>
+                    <button onClick={handleEditName}>Edit</button>
+                  </>
+                )}
+              </div>
+              <div>
+                <label>Email:</label>
+                <span>{userDetails.email}</span>
+                <br />
+                <br />
+                {/* View Gallery Link */}
+                <Link to="/gallery">View Gallery</Link>
+              </div>
+              <div>
+                {/* Delete Account Button */}
+                <button onClick={handleDeleteAccount}>Delete Account</button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

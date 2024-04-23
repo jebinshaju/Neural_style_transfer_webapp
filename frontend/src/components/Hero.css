@@ -1,6 +1,6 @@
 /* Hero.css */
 
-.hero {
+.heroes {
   height: 100vh;
   position: relative;
 }
@@ -14,8 +14,8 @@
   transform: translate(-50%, -50%);
   padding: 30vh;
   background-color: rgba(255, 255, 255, 0.5);
-  width: 190vh;
-  height:90vh;
+  width: 130vh;
+  height:30vh;
   border-radius: 20px;
   background-image: url('./lander4.jpg');
   background-size: cover;
