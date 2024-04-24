@@ -21,12 +21,14 @@ body, html {
   display: flex;
   justify-content: space-around;
   width: 80%;
+
 }
 
 .slider-section {
   margin-top: 100px;
   width: 40%;
   margin-left: 120px;
+
 }
 
 .transfer-btn {
