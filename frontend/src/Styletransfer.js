@@ -85,8 +85,8 @@ const StyleTransferForm = () => {
 
       </div>
 
-      
-      <div className="upload-section">
+
+      <div className="upload-section" >
         <ImageUpload
           label="Content Image"
           setImage={setContentImage}
@@ -94,6 +94,8 @@ const StyleTransferForm = () => {
           setBrightness={setContentBrightness}
           contrast={contentContrast}
           setContrast={setContentContrast}
+          className="dashing"
+
         />
         {showUploadAnimation && (
           <div className="loaderx"></div>
@@ -105,6 +107,7 @@ const StyleTransferForm = () => {
           setBrightness={setStyleBrightness}
           contrast={styleContrast}
           setContrast={setStyleContrast}
+          className="dashing"
         />
       </div>
       <div className="slider-section">

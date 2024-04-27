@@ -1,0 +1,115 @@
+/* Mission.module.css */
+
+.mission {
+  text-align: center;
+  padding: 50px;
+  opacity: 1;
+  transition: opacity 2s ease;
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(151, 159, 162, 1) 40%,
+    rgba(55, 124, 116, 1) 100%
+  );
+  transition: transform 0.3s ease-in-out;
+}
+
+.mission__visible {
+  opacity: 1; /* Show the content when it's visible */
+}
+
+.mission__content {
+  transform: translateY(50px); /* Start position for the slide-in animation */
+  transition: transform 1s ease; /* Add transition effect */
+}
+
+.mission__content--slide-in {
+  transform: translateY(0); /* Slide in the content */
+}
+
+.mission__h3 {
+  font-size: 1.8em;
+  margin-bottom: 20px; /* Adjust spacing */
+  font-family: monospace;
+}
+
+.mission__rectangle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%; /* Adjust width as needed */
+  height: 100vh;
+  padding: 20px; /* Adjust padding as needed */
+  margin: 0 auto; /* Center the rectangle */
+}
+
+.mission__image__containers {
+  --img-size: calc(100px - 0.5rem / 2);
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(6, var(--img-size));
+  grid-template-rows: repeat(4, var(--img-size));
+}
+
+.mission__image {
+  max-width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  grid-column: span 2;
+  border-radius: 0.5rem;
+  clip-path: path(
+    "M 80 20 C 100 0 100 0 120 20 C 140 40 160 60 180 80 C 200 100 200 100 180 120 C 160 140 140 160 120 180 C 100 200 100 200 80 180 C 60 160 40 140 20 120 C 0 100 0 100 20 80 Z"
+  );
+  transition: filter 500ms, clip-path 500ms;
+}
+
+.mission__image:nth-of-type(4),
+.mission__image:nth-of-type(9) {
+  grid-column: 2 / span 2;
+}
+.mission__image:hover {
+  z-index: 100;
+  clip-path: path(
+    "M 0 0 C 100 0 100 0 200 0 C 200 50 200 50 200 80 C 200 100 200 100 200 120 C 200 150 200 150 200 200 C 100 200 100 200 0 200 C 0 150 0 150 0 120 C 0 100 0 100 0 80 Z"
+  );
+}
+
+.mission__image-containers:hover > .mission__image {
+  filter: brightness(0.5) saturate(0.5);
+}
+
+.mission__image-containers > .mission__image:hover {
+  filter: brightness(1) saturate(1.5);
+}
+
+@keyframes zIndexFix {
+  0%,
+  100% {
+    z-index: 10;
+  }
+}
+
+.mission__tryOutButton{
+
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: cursive;
+  margin-bottom:20px;
+  position:sticky;
+}
+
+
+.mission_tryOutButton::after {
+  content: '➜';
+  top: 50%;
+  right: -25px;
+  transform: translateY(-50%);
+  opacity: 0;
+  animation: blink 1s infinite;
+
+}
