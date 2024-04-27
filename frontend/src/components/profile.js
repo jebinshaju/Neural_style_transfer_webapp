@@ -13,7 +13,7 @@ const Profile = () => {
 
   useEffect(() => {
     // Fetch user details
-    axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/user_info')
+    axios.get('http://localhost:5000/user_info')
       .then(response => {
         setUserDetails(response.data);
         setLoading(false); // Turn off loading indicator
@@ -30,7 +30,7 @@ const Profile = () => {
   };
 
   const handleSaveName = () => {
-    axios.post('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/change_name', { new_name: newName })
+    axios.post('http://localhost:5000/change_name', { new_name: newName })
       .then(response => {
         if (response.data.success) {
           setUserDetails(prevState => ({ ...prevState, name: newName }));
@@ -47,7 +47,7 @@ const Profile = () => {
   };
 
   const handleDeleteAccount = () => {
-    axios.delete('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/delete_user')
+    axios.delete('http://localhost:5000/delete_user')
       .then(response => {
         if (response.data.success) {
           setAccountDeleted(true);

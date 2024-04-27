@@ -7,7 +7,7 @@ const UserImages = () => {
 
   useEffect(() => {
     // Fetch user images
-    axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/get_user_images')
+    axios.get('http://localhost:5000/get_user_images')
       .then(response => {
         setUserImages(response.data);
         setLoading(false);

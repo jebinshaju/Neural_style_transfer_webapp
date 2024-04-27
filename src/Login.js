@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import './styles.css'; // Import the CSS file containing the login styles
 
 const LoginComponent = () => {
   const navigate = useNavigate();
@@ -11,75 +11,77 @@ const LoginComponent = () => {
   const [resetResponse, setResetResponse] = useState('');
 
   const handleSignIn = async () => {
-    if (!email || !password) {
-      setError('Please enter both email and password.');
-      return;
-    }
+      if (!email || !password) {
+        setError('Please enter both email and password.');
+        return;
+      }
 
-    setIsLoading(true); // Start loading animation
+      setIsLoading(true); // Start loading animation
 
-    try {
-      const response = await fetch('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      try {
+        const response = await fetch('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
 
-      const responseData = await response.json();
+        const responseData = await response.json();
 
-      if (response.ok) {
-        if (responseData.success) {
-          navigate('/styletransfer');
+        if (response.ok) {
+          if (responseData.success) {
+            navigate('/styletransfer');
+          } else {
+            setError('Invalid email or password');
+          }
         } else {
-          setError('Invalid email or password');
+          setError(responseData.error || 'An error occurred. Please try again later.');
         }
-      } else {
-        setError(responseData.error || 'An error occurred. Please try again later.');
+      } catch (error) {
+        setError('An error occurred. Please try again later.');
       }
-    } catch (error) {
-      setError('An error occurred. Please try again later.');
-    }
 
-    setIsLoading(false); // Stop loading animation
-  };
+      setIsLoading(false); // Stop loading animation
+    };
 
-  const handleForgotPassword = async () => {
-    if (!email) {
-      setError('Please enter your email.');
-      return;
-    }
-
-    setIsLoading(true); // Start loading animation
-
-    try {
-      const response = await fetch('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/reset_password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const responseData = await response.json();
-
-
-      if (response.ok) {
-        setResetResponse(responseData.message);
-      } else {
-        setError(responseData.error || 'An error occurred. Please try again later.');
+    const handleForgotPassword = async () => {
+      if (!email) {
+        setError('Please enter your email.');
+        return;
       }
-    } catch (error) {
-      setError('An error occurred. Please try again later.');
-    }
 
-    setIsLoading(false); // Stop loading animation
-  };
+      setIsLoading(true); // Start loading animation
+
+      try {
+        const response = await fetch('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/reset_password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const responseData = await response.json();
+
+
+        if (response.ok) {
+          setResetResponse(responseData.message);
+        } else {
+          setError(responseData.error || 'An error occurred. Please try again later.');
+        }
+      } catch (error) {
+        setError('An error occurred. Please try again later.');
+      }
+
+      setIsLoading(false); // Stop loading animation
+    };
+
 
   return (
     <div className="login-page">
       <section className="ftco-section">
+      <div className="box">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-6 text-center mb-5">
@@ -104,6 +106,7 @@ const LoginComponent = () => {
                     <input
                       id="password-field"
                       type="password"
+                      style={{color:"white"}}
                       className="form-control"
                       placeholder="Password"
                       required
@@ -129,9 +132,8 @@ const LoginComponent = () => {
                       )}
                     </button>
                   </div>
-                    {error && <div className="error-notification">{error}</div>}
-                    
-                      {resetResponse && <div className="reset-notification">{resetResponse}</div>}
+                  {error && <div className="error-notification">{error}</div>}
+                  {resetResponse && <div className="reset-notification">{resetResponse}</div>}
                   <div className="form-group d-md-flex align-items-center justify-content-between">
                     <div>
                       <button
@@ -147,16 +149,13 @@ const LoginComponent = () => {
                       <a href="/signup" className="r1">
                         Don't have an account?
                       </a>
-
                     </div>
-
                   </div>
-
-
                 </form>
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
     </div>

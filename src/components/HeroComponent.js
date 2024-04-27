@@ -25,7 +25,7 @@ const HeroComponent = () => {
   };
 
   return (
-    <section className="hero">
+    <section className="heroes">
       <div className="outer-box">
         <NavbarComponent isVisible={isNavbarVisible} />
         <div className="inner-box">

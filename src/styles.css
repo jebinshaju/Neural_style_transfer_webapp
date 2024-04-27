@@ -1,15 +1,5 @@
-/* Reset CSS */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Reset default margin and padding for html and body */
-html, body {
-  margin: 0;
-  padding: 0;
-}
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
 
 /* Common CSS for all pages */
 body {
@@ -18,32 +8,49 @@ body {
 
 /* CSS specific to the login page */
 .login-page {
-background-image: linear-gradient( 68.2deg,  rgba(255,202,88,1) 0%, rgba(139,73,255,1) 100.2% );
+  background-image: url('./login1.jpg');
   background-size: cover;
   background-position: center;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
   display: flex;
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-}
-::placeholder{
-  font-size: 16px;
-  color:#fff;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Required for absolute positioning of loader */
 }
 
 /* Container Styles */
 .container {
-  width: 400px; /* Set width */
-  padding: 40px; /* Set padding */
-  background-color: rgba(255, 255, 255, 0); /* Semi-transparent background color */
-  border-radius: 20px; /* Rounded corners */
+  width: 400px;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 20px;
+  /* Box styling with animation */
+  border: 8px solid #0038FF;
+  padding: 6ch;
+  position: relative;
+  border-image:
+    url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 0H8v4H4v4H0v8h4v4h4v4h8v-4h4v-4h4V8h-4V4h-4V0zm0 4v4h4v8h-4v4H8v-4H4V8h4V4h8z' fill='%230038FF'/%3E%3C/svg%3E")
+    8 stretch;
+  animation: borderAnimation 2s infinite;
+}
+
+@keyframes borderAnimation {
+  0% {
+    border-image-slice: 1;
+  }
+  50% {
+    border-image-slice: 20;
+  }
+  100% {
+    border-image-slice: 1;
+  }
 }
 
 /* Heading Styles */
 .heading-section {
   font-size: 24px;
   color: #fff;
-  text-align: center; /* Center the heading */
+  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -53,17 +60,22 @@ background-image: linear-gradient( 68.2deg,  rgba(255,202,88,1) 0%, rgba(139,73,
 }
 
 .form-group {
-  margin-bottom: 20px; /* Adjust the margin */
+  margin-bottom: 20px;
 }
 
 .form-control {
-  width: 100%; /* Adjust the width */
-  padding: 12px; /* Adjust the padding */
+  width: 100%;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 20px; /* Rounded corners */
+  border-radius: 20px;
   font-size: 16px;
   border-style: outset;
   background-color: rgba(255, 255, 255, 0);
+  color: #fff; /* Placeholder color */
+}
+
+.form-control::placeholder {
+  color: #fff; /* Placeholder color */
 }
 
 .form-control:focus {
@@ -94,10 +106,52 @@ background-image: linear-gradient( 68.2deg,  rgba(255,202,88,1) 0%, rgba(139,73,
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  position: relative; /* Required for absolute positioning of loader */
+  margin-left: 14px;
 }
 
 .submit:hover {
   background-color: #FFEAD8;
+}
+
+/* Spinner Animation */
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #333;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error notification */
+.error-notification {
+  color: #ff0000; /* Restore error message color */
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Forgot Password Button */
+.forgot-password-button {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0);
+  border-style: none;
+  font-style: italic;
+  font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 10px; /* Add margin to separate from error message */
 }
 
 /* Checkbox and Link Styles */
@@ -149,46 +203,4 @@ background-image: linear-gradient( 68.2deg,  rgba(255,202,88,1) 0%, rgba(139,73,
   .container {
     width: 80%;
   }
-}
-
-/* Loading animation */
-.loader {
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-top: 4px solid #333;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
-  margin: auto;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Error notification */
-.error-notification {
-  color: #ff0000;
-  font-size: 16px;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.forgot-password-button{
-    color:#fff;
-    background-color: rgba(255, 255, 255, 0);
-    border-style:none;
-    font-style: italic;
-    font-size:16px;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.reset-notification{
-  color:green;
 }

@@ -1,27 +1,26 @@
-/* Main container styling */
+/* SignUpStyles.css */
+
 .main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-
-  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(62,133,238,1) 1.1%, rgba(227,137,240,1) 43.7%, rgba(243,193,124,1) 89.7% );
+    background-image: url('signup1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-
-
-/* Signup section styling */
 .signup {
     width: 400px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0); /* Semi-transparent background color */
-
-    text-align: center; /* Center text content within the signup box */
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
     width: 65vh;
     border-radius: 20px;
+    margin-right: 10vh;
+    margin-bottom: 10vh;
 }
 
-/* Container for signup content */
 .container1 {
     width: 60vh;
     display: flex;
@@ -29,54 +28,44 @@
     align-items: center;
 }
 
-/* Styling for signup form content */
 .signup-content {
     width: 55vh;
 }
 
-/* Title styling */
 .form-title {
     margin-bottom: 20px;
-    color: #fff
+    color: #fff;
 }
 
-/* Form group styling */
 .form-group {
     margin-bottom: 20px;
 }
 
-/* Form input styling */
-.form-input {
-    width: calc(100% - 20px); /* Adjusted width */
+.form-inputy {
+    width: calc(100% - 20px);
     padding: 15px;
-    margin-bottom: 10px; /* Added margin bottom */
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    box-sizing: border-box; /* Ensure padding doesn't affect the width */
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0); /* Semi-transparent background color */
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0);
     border-style: outset;
 }
 
-/* Placeholder styling */
 .form-input::placeholder {
     color: #fff;
     font-size: 14px;
-
 }
 
-/* Agree term styling */
 .agree-term {
     margin-right: 10px;
 }
 
-/* Label agree term styling */
 .label-agree-term {
     font-size: 14px;
 }
 
-/* Signup button styling */
 .form-submit {
     position: relative;
     width: 50%;
@@ -87,18 +76,10 @@
     color: white;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 20px;
     margin-right: 20px;
-    overflow: hidden; /* Hide overflow */
+    overflow: hidden;
 }
 
-/* Rotation circle animation */
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Spinner styling */
 .spinner {
     position: absolute;
     top: 50%;
@@ -106,40 +87,154 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 3px solid rgba(255, 255, 255, 0.7); /* Semi-transparent border */
-    border-top-color: #fff; /* Solid border color */
-    animation: rotate 2s linear infinite; /* Rotation animation */
-
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    border-top-color: #fff;
+    animation: rotate 2s linear infinite;
 }
 
-/* Display the spinner during loading */
 .loading .spinner {
     display: block;
 }
 
-/* Hover styling for signup button */
 .form-submit:hover {
     background-color: #45a049;
 }
 
-/* Login link styling */
 .loginhere {
     margin-top: 15px;
     font-size: 14px;
 }
 
-/* Login link text styling */
 .loginhere-link {
     color: #4CAF50;
 }
 
-/* Error message styling */
 .error {
     color: red;
-    margin-top: 5px; /* Adjust the spacing */
+    margin-top: 5px;
 }
 
-/* Success message styling */
 .success {
     color: green;
+}
+
+/* Additional styles for demonstration box */
+
+.containery {
+    display: block;
+    position: relative;
+    border: solid 3px #6e7491;
+    padding: 40px 60px;
+    max-width: 800px;
+    width: 120%;
+    margin: 100px auto 0;
+    font-size: 17px;
+    line-height: 28px;
+    transform: rotate(-1deg);
+    box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
+    transition: all 0.13s ease-in;
+}
+
+.containery:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
+}
+
+.containery:hover .border {
+    transform: translateY(4px) rotate(-5deg);
+}
+
+.border {
+    position: absolute;
+    transition: all 0.13s ease-in;
+}
+
+.border:before,
+.border:after {
+    color: #515d9c;
+    font-size: 15px;
+    position: absolute;
+}
+
+.tl {
+    position: absolute;
+    left: -50px;
+    top: -63px;
+    font-weight: 600;
+}
+
+.tl:before {
+    content: "37px";
+    left: 120px;
+    top: 30px;
+}
+
+.tl:after {
+    content: "140px";
+    left: 0px;
+    top: 80px;
+}
+
+.tr {
+    right: -50px;
+    top: -63px;
+    font-weight: 600;
+}
+
+.tr:before {
+    content: "23px";
+    left: 0;
+    top: 30px;
+}
+
+.tr:after {
+    content: "130px";
+    left: 130px;
+    top: 80px;
+}
+
+.bl {
+    left: -50px;
+    bottom: -71px;
+    font-weight: 600;
+}
+
+.bl:before {
+    content: "110px";
+    left: 120px;
+    top: -30px;
+}
+
+.bl:after {
+    content: "19px";
+    left: 0px;
+    top: -90px;
+}
+
+.br {
+    right: -50px;
+    bottom: -63px;
+    font-weight: 600;
+}
+
+.br:before {
+    content: "120px";
+    left: 0;
+    top: -30px;
+}
+
+.br:after {
+    content: "24px";
+    right: -10px;
+    top: -80px;
+}
+
+pre {
+    background: #edeff5;
+    padding: 20px;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

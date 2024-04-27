@@ -4,12 +4,14 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import LoginComponent from './Login';
 import SignUpForm from './SignUP';
 import StyleTransferForm from './Styletransfer';
+import NavbarComponent from './components/NavbarComponents';
 import HeroComponent from './components/HeroComponent';
 import ScrollingEffectComponent from './components/ScrollingEffectComponent';
 import QuoteComponent from './components/QuoteComponent';
 import MissionComponent from './components/MissionComponent';
 import Profile from './components/profile';
 import StyleTransferForming from './components/StyleTransW'
+import UserImages from './components/gallery'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,6 +51,7 @@ function App() {
         <Route path="/" element={<HeroComponent />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/styletransfering' element={<StyleTransferForming />} />
+        <Route path='/gallery' element={<UserImages />} />
       </Routes>
       {location.pathname === '/' && <ScrollingEffectComponent currentPage={currentPage} />}
       {location.pathname === '/' && (

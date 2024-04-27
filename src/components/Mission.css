@@ -5,7 +5,8 @@
   padding: 50px; /* Adjust padding as needed */
   opacity: 1; /* Ensure initial opacity is set to 1 */
   transition: opacity 2s ease; /* Add transition effect */
-  background: linear-gradient(45deg, #64B3F4, #C2E59C); /* Default background color */
+  background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(151,159,162,1) 40%, rgba(55,124,116,1) 100%);
   transition: transform 0.3s ease-in-out;
 }
 

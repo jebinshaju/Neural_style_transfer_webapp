@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import './profilestyles.css';
 
 const Profile = () => {
   const [userDetails, setUserDetails] = useState({ name: '', email: '' });
-  const [userImages, setUserImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingName, setEditingName] = useState(false);
   const [newName, setNewName] = useState('');
+  const [accountDeleted, setAccountDeleted] = useState(false);
+  const navigate = useNavigate(); // Use useNavigate for navigation
 
   useEffect(() => {
-    // Fetch user details and images
+    // Fetch user details
     axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/user_info')
       .then(response => {
         setUserDetails(response.data);
@@ -19,14 +21,6 @@ const Profile = () => {
       .catch(error => {
         console.error('Error fetching user details:', error);
         setLoading(false); // Turn off loading indicator in case of error
-      });
-
-    axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/get_user_images')
-      .then(response => {
-        setUserImages(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching user images:', error);
       });
   }, []);
 
@@ -52,52 +46,65 @@ const Profile = () => {
       });
   };
 
+  const handleDeleteAccount = () => {
+    axios.delete('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/delete_user')
+      .then(response => {
+        if (response.data.success) {
+          setAccountDeleted(true);
+          setTimeout(() => {
+            navigate('/login');
+          }, 2000);
+        } else {
+          console.error('Error deleting account:', response.data.error);
+
+        }
+      })
+      .catch(error => {
+        console.error('Error deleting account:', error);
+      });
+  };
+
   return (
     <div className='containerP'>
       <div className="profile-container">
         <div className="user-details">
           <h2 id="userI">User Details</h2>
-          <div>
-            <label>Name:</label>
-            {editingName ? (
-              <>
-                <input
-                  type="text"
-                  value={newName}
-                  onChange={(e) => setNewName(e.target.value)}
-                />
-                <button onClick={handleSaveName}>Save</button>
-              </>
-            ) : (
-              <>
-                <span>{userDetails.name}</span>
-                <button onClick={handleEditName}>Edit</button>
-              </>
-            )}
-          </div>
-          <div>
-            <label>Email:</label>
-            <span>{userDetails.email}</span>
-          </div>
-        </div>
-        <h2 id="userI">User Images</h2>
-        {loading && <div className="loadery"></div>}
-        <div className="image-grids">
-          {userImages && Object.keys(userImages).map(imageKey => (
-            <div key={imageKey} className="image-item">
-              <div className='image-set'>
-                <img src={userImages[imageKey].content} alt={`Content ${imageKey}`} />
-                <div className="operation">
-                  <div className="symbol">+</div>
-                </div>
-                <img src={userImages[imageKey].style} alt={`Style ${imageKey}`} />
-                <div className="operation">
-                  <div className="symbol">=</div>
-                </div>
-                <img src={userImages[imageKey].generated} alt={`Generated ${imageKey}`} />
+          {accountDeleted ? (
+            <p style={{ color: 'green' }}>Account deleted</p>
+          ) : (
+            <>
+              <div>
+                <label>Name:</label>
+                {editingName ? (
+                  <>
+                    <input
+                      type="text"
+                      value={newName}
+                      onChange={(e) => setNewName(e.target.value)}
+                    />
+                    <button onClick={handleSaveName}>Save</button>
+                  </>
+                ) : (
+                  <>
+                    <span>{userDetails.name}</span>
+                    <button onClick={handleEditName}>Edit</button>
+                  </>
+                )}
               </div>
-            </div>
-          ))}
+              <div>
+                <label>Email:</label>
+                <span>{userDetails.email}</span>
+                <br />
+                <br />
+                {/* View Gallery Link */}
+                <Link to="/gallery">View Gallery</Link>
+              </div>
+              <div>
+                {/* Delete Account Button */}
+                <button onClick={handleDeleteAccount}>Delete Account</button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
