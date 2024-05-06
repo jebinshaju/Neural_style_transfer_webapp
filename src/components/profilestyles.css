@@ -1,16 +1,40 @@
+.containerP {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
 .profile-container {
   display: flex;
   flex-direction: column;
-  
-  width:100vh;
-  
+  align-items: center;
+  width: 100%;
 }
 
-.user-details {
+.welcome-message {
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.user-details h2 {
+.welcome-message img {
+  width: 50px; /* Adjust according to your profile icon size */
+  margin-right: 10px;
+}
+
+.welcome-message span {
+  font-size: 1.2em;
+}
+
+#userI {
+  font-family: cursive;
+  font-size: 2.5em;
+  border-bottom: 2px solid yellow;
+  border-right: 2px solid yellow;
+  width: 300px;
+  text-align: center;
+  box-shadow: 4px 4px 5px #fff;
+  padding: 20px;
   margin-bottom: 10px;
 }
 
@@ -25,7 +49,6 @@
   width: 95%; /* Set width to 100% for each item */
   box-sizing: border-box;
   margin-top: 20px;
-
 }
 
 .image-item .image-set {
@@ -36,17 +59,13 @@
 .image-item img {
   max-width: calc(33.33% - 100px); /* Adjust image width for three items per row */
   height: auto;
-
   border-radius: 20px;
-
 }
-.image-item img:hover {
 
+.image-item img:hover {
   transform: scale(1.1); /* Increase the size by 10% */
   transition: transform 0.5s ease; /* Smooth transition */
-
 }
-
 
 .loadery {
   display: flex;
@@ -58,28 +77,9 @@
   height: 20px;
   animation: spin 1s linear infinite;
   margin: auto;
-  size:20px;
+  size: 20px;
 }
 
-
-#userI{
-  font-family:cursive;
-	font-size:2.5em;
-	border-bottom: 2px solid yellow;
-	border-right: 2px solid yellow;
-	width: 300px;
-	text-align:center;
-	box-shadow: 4px 4px 5px #fff;
-  padding:20px;
-  margin-bottom: 10px;
-}
-.containerP{
-  display:flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-  
-  
-}
 .user-details {
   margin-bottom: 20px;
   padding: 20px;

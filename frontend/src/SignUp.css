@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('signup1.jpg');
+    background-image: url('signup14.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -53,8 +53,8 @@
     border-style: outset;
 }
 
-.form-input::placeholder {
-    color: #fff;
+.form-inputy::placeholder {
+    color:#fff ;
     font-size: 14px;
 }
 
@@ -134,7 +134,7 @@
     box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
     transition: all 0.13s ease-in;
 
-  border-top-left-radius: 120px 24px;
+  border-top-left-radius: 110px 19px;
   border-top-right-radius: 110px 19px;
   border-bottom-left-radius: 110px 19px;
   border-bottom-right-radius: 120px 24px;

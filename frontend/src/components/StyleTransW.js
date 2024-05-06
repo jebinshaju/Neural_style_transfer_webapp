@@ -54,7 +54,8 @@ const StyleTransferForming = () => {
 
   return (
     <div className="style-transfer-form">
-      <h2 style={{ padding: "40px" }} id="r1">NEURAL STYLE TRANSFER</h2>
+    
+      <div className="upload-section"></div>
       <div className="upload-section">
         <ImageUpload
           label="Content Image"
@@ -93,6 +94,7 @@ const StyleTransferForming = () => {
       <button className="transfer-btn" onClick={handleTransferStyle} disabled={!contentImage || !styleImage || uploading}>
         {uploading ? 'Uploading...' : 'Transfer Style'}
       </button>
+      <p className="message">Note: Images will not be saved unless you login.</p>
       {uploading && <progress value={uploadProgress} max="100"></progress>} {/* Display progress bar */}
       {generatedImage && (
         <div className="generated-image">

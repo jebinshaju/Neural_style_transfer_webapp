@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate and Link
 import ImageUpload from './ImageUpload';
@@ -18,22 +18,27 @@ const StyleTransferForm = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showUploadAnimation, setShowUploadAnimation] = useState(false);
+  const [userName, setUserName] = useState(''); // State to store user's name
 
   const navigate = useNavigate(); // Get the navigate function
-  useEffect(() => {
-   const checkSession = async () => {
-     try {
-       const response = await axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/session_check');
-       if (!response.data.success) {
-         navigate('/login');
-       }
-     } catch (error) {
-       console.error('Error checking session:', error);
-     }
-   };
 
-   checkSession();
- }, [navigate]);
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const response = await axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/session_check');
+        if (!response.data.success) {
+          navigate('/login');
+        } else {
+          // Set the user's name
+          setUserName(response.data.name);
+        }
+      } catch (error) {
+        console.error('Error checking session:', error);
+      }
+    };
+
+    checkSession();
+  }, [navigate]);
 
   const handleTransferStyle = async () => {
     setUploading(true);
@@ -66,6 +71,7 @@ const StyleTransferForm = () => {
       setShowUploadAnimation(false); // Hide animation after upload
     }
   };
+
   const handleSignout = async () => {
     try {
       // Assuming you have a signout endpoint in your backend
@@ -82,8 +88,9 @@ const StyleTransferForm = () => {
         <Link to="/profile">
           <img src={loginIcon} alt="Login" className="login-icon" />
         </Link>
+        <span className="welcome-message">Welcome {userName}!</span> {/* Display welcome message */}
       </div>
-      <h2 style={{ padding: "40px" }} id="r1">NEURAL STYLE TRANSFER</h2>
+      
       <div className="upload-section">
         <ImageUpload
           label="Content Image"
@@ -94,8 +101,8 @@ const StyleTransferForm = () => {
           setContrast={setContentContrast}
         />
         {showUploadAnimation && (
-        <div className="loaderx">
-        </div>
+          <div className="loaderx">
+          </div>
         )}
         <ImageUpload
           label="Style Image"
