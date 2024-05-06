@@ -47,6 +47,10 @@ const MissionComponent = () => {
       <img src={img2} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
       <img src={img3} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
       <img src={img4} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
+      <img src={img4} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
+      <img src={img4} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
+      <img src={img4} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
+      <img src={img4} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
      </div>
     </div>
     <div className={styles.mission__buttonContainer}>

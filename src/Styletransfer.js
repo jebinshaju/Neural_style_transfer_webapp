@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate and Link
+import { useNavigate, Link } from 'react-router-dom';
 import ImageUpload from './ImageUpload';
-import './Styletransfer.css';
 import loginIcon from './components/icon.png';
+import './Styletransfer.css';
 
 const StyleTransferForm = () => {
   const [contentImage, setContentImage] = useState(null);
@@ -18,31 +18,25 @@ const StyleTransferForm = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showUploadAnimation, setShowUploadAnimation] = useState(false);
-  const [userName, setUserName] = useState(''); // State to store user's name
-
-  const navigate = useNavigate(); // Get the navigate function
+  const [userDetails, setUserDetails] = useState({ name: '', email: '' });
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const checkSession = async () => {
+    const fetchUserDetails = async () => {
       try {
-        const response = await axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/session_check');
-        if (!response.data.success) {
-          navigate('/login');
-        } else {
-          // Set the user's name
-          setUserName(response.data.name);
-        }
+        const response = await axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/user_info');
+        setUserDetails(response.data);
       } catch (error) {
-        console.error('Error checking session:', error);
+        console.error('Error fetching user details:', error);
       }
     };
 
-    checkSession();
-  }, [navigate]);
+    fetchUserDetails();
+  }, []);
 
   const handleTransferStyle = async () => {
     setUploading(true);
-    setShowUploadAnimation(true); // Trigger animation
+    setShowUploadAnimation(true);
     const formData = new FormData();
     formData.append('content', contentImage);
     formData.append('style', styleImage);
@@ -60,7 +54,7 @@ const StyleTransferForm = () => {
         },
         onUploadProgress: (progressEvent) => {
           const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-          setUploadProgress(progress); // Update upload progress state
+          setUploadProgress(progress);
         },
       });
       setGeneratedImage(response.data.generated_image);
@@ -68,15 +62,14 @@ const StyleTransferForm = () => {
       console.error('Error transferring style:', error);
     } finally {
       setUploading(false);
-      setShowUploadAnimation(false); // Hide animation after upload
+      setShowUploadAnimation(false);
     }
   };
 
   const handleSignout = async () => {
     try {
-      // Assuming you have a signout endpoint in your backend
       await axios.get('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/signout');
-      navigate('/login'); // Navigate to the login page after successful signout
+      navigate('/login');
     } catch (error) {
       console.error('Error signing out:', error);
     }
@@ -85,11 +78,18 @@ const StyleTransferForm = () => {
   return (
     <div className="style-transfer-form">
       <div className="login-icon-container">
+        <span id="welcome-msg">Welcome, {userDetails.name}!</span>
         <Link to="/profile">
           <img src={loginIcon} alt="Login" className="login-icon" />
         </Link>
+<<<<<<< HEAD
         <span className="welcome-message">Welcome {userName}!</span> {/* Display welcome message */}
       </div>
+=======
+
+      </div>
+
+>>>>>>> fdb364f29785bceef9543df5a6d86927c82aa8b6
       
       <div className="upload-section">
         <ImageUpload
@@ -101,8 +101,12 @@ const StyleTransferForm = () => {
           setContrast={setContentContrast}
         />
         {showUploadAnimation && (
+<<<<<<< HEAD
           <div className="loaderx">
           </div>
+=======
+          <div className="loaderx"></div>
+>>>>>>> fdb364f29785bceef9543df5a6d86927c82aa8b6
         )}
         <ImageUpload
           label="Style Image"
@@ -137,9 +141,7 @@ const StyleTransferForm = () => {
           <a href={`https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/generated_image/${generatedImage}`} download>Download Image</a>
         </div>
       )}
-      <button className="signout-btn" onClick={handleSignout}>
-        Sign Out
-      </button>
+      <button className="signout-btn" onClick={handleSignout}>Sign Out</button>
     </div>
   );
 };

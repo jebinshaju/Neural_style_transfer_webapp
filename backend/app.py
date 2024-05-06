@@ -33,7 +33,6 @@ firebaseConfig = {
     'appId': "1:690387462569:web:8b5709267710c33a227cb8",
     'databaseURL': "https://neural-st-default-rtdb.firebaseio.com/" }
 
-
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 db=firebase.database()
