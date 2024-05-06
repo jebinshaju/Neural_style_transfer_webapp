@@ -24,15 +24,24 @@ const StyleTransferForm = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/user_info');
-        setUserDetails(response.data);
+   
+        const checkSessionResponse = await axios.get('http://localhost:5000/session_check');
+        const isAuthenticated = checkSessionResponse.data.success;
+
+        if (!isAuthenticated) {
+     
+          navigate('/login');
+        } else {
+          const userDetailsResponse = await axios.get('http://localhost:5000/user_info');
+          setUserDetails(userDetailsResponse.data);
+        }
       } catch (error) {
-        console.error('Error fetching user details:', error);
+        console.error('Error:', error);
       }
     };
 
     fetchUserDetails();
-  }, []);
+  }, [navigate]);
 
   const handleTransferStyle = async () => {
     setUploading(true);
