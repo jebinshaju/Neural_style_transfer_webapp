@@ -3,6 +3,9 @@
 body, html {
   height: 100%;
   margin: 0;
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(163,205,255,1) 100%);
+
 }
 
 /* Add a magenta gradient background */
@@ -14,6 +17,7 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 
 }
 
@@ -21,9 +25,16 @@ body, html {
   display: flex;
   justify-content: space-around;
   width: 80%;
-
+  
 }
 
+.upload-box
+{
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(42,42,116,0.35057773109243695) 16%, rgba(0,212,255,1) 62%);
+  border: solid rgb(164, 169, 179);
+  border-radius: 5%;
+}
 .slider-section {
   margin-top: 100px;
   width: 40%;
