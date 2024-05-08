@@ -1,29 +1,65 @@
-.navbar-container {
-  position: relative;
-
-
-
+/* Navbar Styles */
+#header {
+  display: flex;
+  
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--bg-color); /* Dynamic background color */
+  transition: background-color 0.3s ease;
+  
+}
+#nav-actions{
+  margin-right: 30px;
 }
 
+#header.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Add any additional styles for the fixed navbar */
+
+/* Navbar Container */
+.navbar-container {
+  position: fixed;
+  
+}
+
+/* Toggle Button */
 .toggle-btn {
   position: fixed;
   top: 30px;
   right: 30px;
-
-
-  background: none;
+  background: #000000;
   border: none;
-
   cursor: pointer;
   border-radius: 5px;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  right: -250px; /* Initially hidden */
+  height: 100vh;
+  width: 240px;
+  background-color: var(--bg-color); /* Dynamic background color */
+  transition: right 0.2s ease-in-out, background-color 0.3s ease; /* Include background-color transition */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+
 
 }
 
-.stripe {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin-bottom: 5px;
+.navbar:hover {
+  background-color: #f0f0f0; /* Change background color when hovering over navbar */
+}
+
+.navbar.visible {
+  right: 0; /* Visible when toggled */
 }
 
 .close-icon {
@@ -33,11 +69,11 @@
   cursor: pointer;
 }
 
+/* Navbar Links */
 .navbar ul {
   list-style: none;
   padding: 0;
   margin: 50px 0 0 0;
-
 }
 
 .navbar ul li {
@@ -57,9 +93,62 @@
   background-color: #f0f0f0;
 }
 
-.menu-text {
-  font-size: 1.3em;
-  padding: 10px;
-  font-family: system-ui;
+/* Additional Navbar Styles */
 
+/* Navigation Icons */
+#nav-navigation,
+#nav-actions button {
+  cursor: pointer;
+}
+
+.icon {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.7;
+}
+
+.rotate-left,
+.rotate-right {
+  transition: transform 0.3s ease;
+}
+
+/* Action Buttons */
+#nav-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+#nav-actions button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#nav-actions button:hover {
+  transform: scale(1.1);
+}
+
+#nav-actions button svg {
+  width: 24px;
+  height: 24px;
+}
+
+#nav-actions button {
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  color: #000;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.7);
+  }
 }

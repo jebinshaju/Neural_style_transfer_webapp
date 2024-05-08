@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Quote.css';
 import Image1 from './in.jpg';
-import Image2 from './style.jpg';
+import Image2 from './rain_princess_thumb.jpg';
 import Image3 from './out.png';
 
 const QuoteComponent = () => {

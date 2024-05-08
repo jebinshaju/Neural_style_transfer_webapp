@@ -1,11 +1,96 @@
 .containerP {
   display: flex;
+<<<<<<< HEAD
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.welcome-message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.welcome-message img {
+  width: 50px; /* Adjust according to your profile icon size */
+  margin-right: 10px;
+}
+
+.welcome-message span {
+  font-size: 1.2em;
+}
+
+#userI {
+  font-family: cursive;
+  font-size: 2.5em;
+  border-bottom: 2px solid yellow;
+  border-right: 2px solid yellow;
+  width: 300px;
+  text-align: center;
+  box-shadow: 4px 4px 5px #fff;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.image-grids {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.image-item {
+  width: 95%; /* Set width to 100% for each item */
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+.image-item .image-set {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-item img {
+  max-width: calc(33.33% - 100px); /* Adjust image width for three items per row */
+  height: auto;
+  border-radius: 20px;
+}
+
+.image-item img:hover {
+  transform: scale(1.1); /* Increase the size by 10% */
+  transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.loadery {
+  display: flex;
+  align-items: center;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #333;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+  size: 20px;
+}
+
+.user-details {
+  margin-bottom: 20px;
+=======
   justify-content: center; /* Center the profile container horizontally */
   align-items: center; /* Center the profile container vertically */
   height: 100vh; /* Ensure the profile container takes the full height of the viewport */
 }
 
 .profile-container {
+>>>>>>> fdb364f29785bceef9543df5a6d86927c82aa8b6
   padding: 20px;
   background-color: rgba(249, 249, 249, 0.7);
   border-radius: 10px;

@@ -42,12 +42,32 @@ const SignUpForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
+        // Check if passwords match
         if (formData.password !== formData.rePassword) {
             setError('Passwords do not match');
             return;
         }
-
+    
+        // Check password length
+        if (formData.password.length < 6) {
+            setError('Password must be at least 6 characters long');
+            return;
+        }
+    
+        // Check for special characters in password
+        const specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
+        if (!specialCharacters.test(formData.password)) {
+            setError('Password must contain at least one special character');
+            return;
+        }
+    
+        // Check if the checkbox is checked
+        if (!formData.agreeTerm) {
+            setError('Please agree to the terms');
+            return;
+        }
+    
         setLoading(true);
         try {
             const response = await fetch('https://nstapi.politeriver-d3fc4f5c.centralindia.azurecontainerapps.io/signup', {
@@ -57,7 +77,7 @@ const SignUpForm = () => {
                 },
                 body: JSON.stringify(formData),
             });
-
+    
             if (response.ok) {
                 setSuccess(true);
                 setTimeout(() => {
@@ -65,7 +85,11 @@ const SignUpForm = () => {
                 }, 2000);
             } else {
                 const data = await response.json();
-                setError(data.error);
+                if (data.error.includes('email')) {
+                    setError('Email already exists');
+                } else {
+                    setError(data.error);
+                }
             }
         } catch (error) {
             console.error('Error:', error);
@@ -74,6 +98,7 @@ const SignUpForm = () => {
             setLoading(false);
         }
     }
+    
 
     return (
         <div className="main">

@@ -82,9 +82,14 @@ const StyleTransferForm = () => {
         <Link to="/profile">
           <img src={loginIcon} alt="Login" className="login-icon" />
         </Link>
+<<<<<<< HEAD
+        <span className="welcome-message">Welcome {userName}!</span> {/* Display welcome message */}
+      </div>
+=======
 
       </div>
 
+>>>>>>> fdb364f29785bceef9543df5a6d86927c82aa8b6
       
       <div className="upload-section">
         <ImageUpload
@@ -96,7 +101,12 @@ const StyleTransferForm = () => {
           setContrast={setContentContrast}
         />
         {showUploadAnimation && (
+<<<<<<< HEAD
+          <div className="loaderx">
+          </div>
+=======
           <div className="loaderx"></div>
+>>>>>>> fdb364f29785bceef9543df5a6d86927c82aa8b6
         )}
         <ImageUpload
           label="Style Image"

@@ -23,7 +23,6 @@ app.secret_key = os.urandom(24).hex()  # Set a secret key for session management
 
 # Enable CORS for all routes
 
-
 firebaseConfig = {
     'apiKey': "AIzaSyAhCKUMbP8GGtwkAaAEV38dKWzn6BcxS5Y",
     'authDomain': "neural-st.firebaseapp.com",

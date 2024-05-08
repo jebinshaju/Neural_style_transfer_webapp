@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Mission.module.css'; // Import with '.module.css' extension
-import img1 from './img1.jpg';
-import img2 from './img2.jpg';
-import img3 from './img3.jpg';
-import img4 from './img4.jpg';
+import img1 from './nst1.jpg';
+import img2 from './nst2.jpg';
+import img3 from './nst3.jpeg';
+import img4 from './nst4.jpeg';
+import img5 from './nst5.jpeg';
+import img6 from './nst6.jpg';
+import img7 from './nst7.png';
+import img8 from './nst1.jpg';
 
 const MissionComponent = () => {
  const [isVisible, setIsVisible] = useState(false);
@@ -47,6 +51,10 @@ const MissionComponent = () => {
       <img src={img2} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
       <img src={img3} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
       <img src={img4} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
+      <img src={img5} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
+      <img src={img6} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
+      <img src={img7} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
+      <img src={img8} alt="Description" className={isVisible ? styles.mission__image : styles.mission__image__slideIn} />
      </div>
     </div>
     <div className={styles.mission__buttonContainer}>

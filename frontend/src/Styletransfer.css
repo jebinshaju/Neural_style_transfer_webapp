@@ -155,3 +155,9 @@ body, html {
 #welcome-msg {
   margin-left: 10px;
 }
+.message {
+  background-color: rgb(208, 72, 72); /* Set background color of the message to white */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
