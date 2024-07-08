@@ -34,8 +34,8 @@ Neural style transfer is a technique in deep learning that allows for the transf
 
 - **Frontend**: React.js, React Router, HTML, CSS
 - **Backend**: Flask, TensorFlow, NumPy
-- **Database**: SQLite (for user authentication and storing image URLs)
-- **Deployment**: Docker, Heroku (or any other suitable platform)
+- **Database**: Firebase
+- **Deployment**: Docker, Azure (or any other suitable platform)
 
 ## Installation
 
