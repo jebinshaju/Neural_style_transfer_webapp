@@ -24,12 +24,10 @@ const StyleTransferForm = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-   
         const checkSessionResponse = await axios.get('http://localhost:5000/session_check');
         const isAuthenticated = checkSessionResponse.data.success;
 
         if (!isAuthenticated) {
-     
           navigate('/login');
         } else {
           const userDetailsResponse = await axios.get('http://localhost:5000/user_info');
@@ -44,8 +42,29 @@ const StyleTransferForm = () => {
   }, [navigate]);
 
   const handleTransferStyle = async () => {
+    if (!contentImage || !styleImage) {
+      alert('Please select both content and style images.');
+      return;
+    }
+
+    // Check file type (allow only images)
+    const isImage = (file) => {
+      return file['type'].split('/')[0] === 'image';
+    };
+
+    // Check file size (limit to 10MB)
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB in bytes
+    if (!isImage(contentImage) || !isImage(styleImage)) {
+      alert('Please upload valid image files (JPEG or PNG).');
+      return;
+    } else if (contentImage.size > MAX_FILE_SIZE || styleImage.size > MAX_FILE_SIZE) {
+      alert('Image file size should not exceed 10MB.');
+      return;
+    }
+
     setUploading(true);
     setShowUploadAnimation(true);
+
     const formData = new FormData();
     formData.append('content', contentImage);
     formData.append('style', styleImage);
@@ -69,6 +88,7 @@ const StyleTransferForm = () => {
       setGeneratedImage(response.data.generated_image);
     } catch (error) {
       console.error('Error transferring style:', error);
+      alert('Error transferring style. Please try again.');
     } finally {
       setUploading(false);
       setShowUploadAnimation(false);
@@ -91,11 +111,9 @@ const StyleTransferForm = () => {
         <Link to="/profile">
           <img src={loginIcon} alt="Login" className="login-icon" />
         </Link>
-
       </div>
 
-
-      <div className="upload-section" >
+      <div className="upload-section">
         <ImageUpload
           label="Content Image"
           setImage={setContentImage}
@@ -104,11 +122,8 @@ const StyleTransferForm = () => {
           contrast={contentContrast}
           setContrast={setContentContrast}
           className="dashing"
-
         />
-        {showUploadAnimation && (
-          <div className="loaderx"></div>
-        )}
+        {showUploadAnimation && <div className="loaderx"></div>}
         <ImageUpload
           label="Style Image"
           setImage={setStyleImage}
@@ -119,6 +134,7 @@ const StyleTransferForm = () => {
           className="dashing"
         />
       </div>
+
       <div className="slider-section">
         <label htmlFor="epochs">Epochs: {epochs}</label>
         <input type="range" id="epochs" min={1} max={10} value={epochs} onChange={(e) => setEpochs(e.target.value)} />
@@ -132,18 +148,26 @@ const StyleTransferForm = () => {
           onChange={(e) => setStepsPerEpoch(e.target.value)}
         />
       </div>
+
       <button className="transfer-btn" onClick={handleTransferStyle} disabled={!contentImage || !styleImage || uploading}>
         {uploading ? 'Uploading...' : 'Transfer Style'}
       </button>
+
       {uploading && <progress value={uploadProgress} max="100"></progress>}
+
       {generatedImage && (
         <div className="generated-image">
-          <h3 style={{ margin: "20px" }}>GENERATED IMAGE</h3>
+          <h3 style={{ margin: '20px' }}>GENERATED IMAGE</h3>
           <img src={`http://localhost:5000/generated_image/${generatedImage}`} alt="Generated" className="genz" />
-          <a href={`http://localhost:5000/generated_image/${generatedImage}`} download>Download Image</a>
+          <a href={`http://localhost:5000/generated_image/${generatedImage}`} download>
+            Download Image
+          </a>
         </div>
       )}
-      <button className="signout-btn" onClick={handleSignout}>Sign Out</button>
+
+      <button className="signout-btn" onClick={handleSignout}>
+        Sign Out
+      </button>
     </div>
   );
 };
